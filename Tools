@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 
-<html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+```
 <title>DevTools — Free Developer Tools</title>
 <meta name="description" content="Fast and free developer tools for programmers, developers, bot builders and SaaS creators.">
 
@@ -89,14 +93,21 @@
         color: #687384;
     }
 </style>
+```
+
 </head>
 
 <body>
 
-<header> <div class="container"> <div class="logo">DevTools</div> </div> </header>
+<header>
+    <div class="container">
+        <div class="logo">DevTools</div>
+    </div>
+</header>
 
 <main>
 
+```
 <section class="hero">
     <h1>Developer tools, made simple.</h1>
 
@@ -151,9 +162,13 @@
 
     </div>
 </section>
+```
 
 </main>
 
-<footer> © 2026 DevTools. Free developer utilities. </footer>
+<footer>
+    © 2026 DevTools. Free developer utilities.
+</footer>
 
-</body> </html>
+</body>
+</html>
