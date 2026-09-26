@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>JSON Formatter — devtools</title>
+<meta name="description" content="Free online JSON formatter and validator for developers.">
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        background: #ffffff;
+        color: #000000;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    header {
+        padding: 28px 40px;
+        border-bottom: 1px solid #eeeeee;
+    }
+
+    header a {
+        color: #000000;
+        text-decoration: none;
+        font-size: 22px;
+        font-weight: 700;
+    }
+
+    main {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 24px;
+    }
+
+    h1 {
+        margin: 0 0 10px;
+        font-size: 36px;
+    }
+
+    .description {
+        margin-bottom: 35px;
+        color: #555555;
+    }
+
+    textarea {
+        width: 100%;
+        min-height: 350px;
+        padding: 18px;
+        border: 1px solid #cccccc;
+        border-radius: 8px;
+        resize: vertical;
+        font-family: monospace;
+        font-size: 15px;
+        outline: none;
+    }
+
+    textarea:focus {
+        border-color: #000000;
+    }
+
+    .buttons {
+        display: flex;
+        gap: 10px;
+        margin: 15px 0 35px;
+    }
+
+    button {
+        padding: 11px 20px;
+        border: 1px solid #000000;
+        background: #000000;
+        color: #ffffff;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    button.secondary {
+        background: #ffffff;
+        color: #000000;
+    }
+
+    pre {
+        display: none;
+        padding: 20px;
+        background: #f6f6f6;
+        border: 1px solid #eeeeee;
+        border-radius: 8px;
+        overflow-x: auto;
+        white-space: pre-wrap;
+        word-break: break-word;
+    }
+
+    .error {
+        color: #c00000;
+        margin-top: 15px;
+    }
+
+    @media (max-width: 600px) {
+        header {
+            padding: 22px;
+        }
+
+        main {
+            padding: 40px 18px;
+        }
+
+        h1 {
+            font-size: 30px;
+        }
+
+        .buttons {
+            flex-wrap: wrap;
+        }
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+<header>
+    <a href="../index.html">devtools</a>
+</header>
+
+<main>
+
+```
+<h1>JSON Formatter</h1>
+
+<p class="description">
+    Format, validate and minify JSON directly in your browser.
+</p>
+
+<textarea id="input" placeholder='Paste your JSON here...
+```
+
+Example:
+{"name":"devtools","active":true}'></textarea>
+
+```
+<div class="buttons">
+    <button onclick="formatJSON()">Format</button>
+    <button onclick="minifyJSON()">Minify</button>
+    <button class="secondary" onclick="clearJSON()">Clear</button>
+</div>
+
+<div id="error" class="error"></div>
+
+<pre id="output"></pre>
+```
+
+</main>
+
+<script>
+    const input = document.getElementById("input");
+    const output = document.getElementById("output");
+    const error = document.getElementById("error");
+
+    function formatJSON() {
+        error.textContent = "";
+
+        try {
+            const json = JSON.parse(input.value);
+
+            output.textContent = JSON.stringify(json, null, 4);
+            output.style.display = "block";
+        } catch (e) {
+            output.style.display = "none";
+            error.textContent = "Invalid JSON: " + e.message;
+        }
+    }
+
+    function minifyJSON() {
+        error.textContent = "";
+
+        try {
+            const json = JSON.parse(input.value);
+
+            output.textContent = JSON.stringify(json);
+            output.style.display = "block";
+        } catch (e) {
+            output.style.display = "none";
+            error.textContent = "Invalid JSON: " + e.message;
+        }
+    }
+
+    function clearJSON() {
+        input.value = "";
+        output.textContent = "";
+        output.style.display = "none";
+        error.textContent = "";
+    }
+</script>
+
+</body>
+</html>
