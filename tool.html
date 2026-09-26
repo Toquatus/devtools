@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SaaS Infrastructure & API Cost Simulator | Torquatus</title>
+    <title>Advanced Bot & SaaS Webhook Configurator | Torquatus</title>
     <style>
         :root {
             --bg-color: #0d1117;
@@ -12,6 +12,7 @@
             --text-color: #c9d1d9;
             --text-dim: #8b949e;
             --success: #2ea44f;
+            --border: #30363d;
         }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
@@ -40,9 +41,10 @@
         .logo { font-size: 20px; font-weight: bold; color: #fff; text-decoration: none; }
         .logo span { color: var(--accent-color); }
 
+        /* BANNERS */
         .ad-box {
             background-color: #1f242c;
-            border: 1px dashed #30363d;
+            border: 1px dashed var(--border);
             color: var(--text-dim);
             display: flex;
             flex-direction: column;
@@ -58,7 +60,8 @@
         .ad-bottom { width: 100%; height: 90px; margin-top: 20px; }
         .refresh-timer { font-size: 9px; color: var(--accent-color); margin-top: 4px; }
 
-        .simulator-grid {
+        /* INTERFACE DA FERRAMENTA */
+        .workspace {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
@@ -66,141 +69,167 @@
         }
         .card {
             background-color: var(--card-bg);
-            border: 1px solid #30363d;
+            border: 1px solid var(--border);
             border-radius: 8px;
             padding: 24px;
         }
-        h2 { color: #fff; margin-top: 0; font-size: 20px; }
-        .slider-group { margin-bottom: 20px; }
-        label { display: block; margin-bottom: 8px; font-weight: 600; }
-        input[type="range"] { width: 100%; accent-color: var(--accent-color); }
-        .value-display { color: var(--accent-color); font-weight: bold; float: right; }
-
-        .provider-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid #21262d;
-        }
-        .provider-name { font-weight: bold; }
-        .cost-val { color: #ff7b72; font-weight: bold; }
-        .margin-box {
-            background: #1f242c;
-            padding: 15px;
+        h2, h3 { color: #fff; margin-top: 0; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 6px; font-weight: 600; font-size: 14px; }
+        select, input, textarea {
+            width: 100%;
+            background-color: #0d1117;
+            border: 1px solid var(--border);
             border-radius: 6px;
-            margin-top: 20px;
-            text-align: center;
+            padding: 10px;
+            color: var(--text-color);
+            box-sizing: border-box;
+            font-family: inherit;
         }
-        .margin-val { font-size: 24px; color: var(--success); font-weight: bold; }
+        textarea { height: 100px; resize: none; font-family: monospace; font-size: 13px; }
+        
+        .code-output {
+            background-color: #0d1117;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 15px;
+            font-family: monospace;
+            font-size: 13px;
+            color: #79c0ff;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            height: 280px;
+        }
+        .btn-copy {
+            background-color: var(--success);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+        }
+        .btn-copy:hover { opacity: 0.9; }
     </style>
 </head>
 <body>
 
     <header>
         <a href="index.html" class="logo">Torquatus<span>.Labs</span></a>
-        <div>SaaS Infrastructure Tool v1.0</div>
+        <div>Developer Automation Toolkit v1.1</div>
     </header>
 
+    <!-- BANNER DE ANÚNCIO TOP -->
     <div id="banner-top" class="ad-box ad-top">
-        <span>ADVERTISEMENT (TOP 728x90)</span>
-        <span class="refresh-timer">Auto-refreshing in: <b class="timer-count">30</b>s</span>
+        <span>ADVERTISEMENT PLACEHOLDER (TOP 728x90)</span>
+        <span class="refresh-timer">Next update in: <b class="timer-count">30</b>s</span>
     </div>
 
     <div class="container">
         <div class="main-content">
             <div class="card">
-                <h2>SaaS Interactive Cost & Margin Architecture</h2>
-                <p style="color: var(--text-dim); font-size: 14px;">Simulate infrastructure spend vs revenue to compute target net profit margins across global cloud regions.</p>
+                <h2>Advanced Bot & SaaS Webhook Payload Builder</h2>
+                <p style="color: var(--text-dim); font-size: 14px; margin-bottom: 20px;">Visually construct, structure, and sanitize API webhook architecture for bots, automation chains, and platform integrations.</p>
                 
-                <div class="simulator-grid">
+                <div class="workspace">
+                    <!-- PAINEL DE CONFIGURAÇÃO -->
                     <div>
-                        <div class="slider-group">
-                            <label>Monthly Active Users (MAU) <span class="value-display" id="mau-val">5,000</span></label>
-                            <input type="range" id="mau" min="1000" max="100000" step="1000" value="5000">
+                        <div class="form-group">
+                            <label>Target Platform Platform / Destination</label>
+                            <select id="platform">
+                                <option value="discord">Discord Bot Webhook</option>
+                                <option value="telegram">Telegram Bot API</option>
+                                <option value="stripe">Stripe SaaS Event</option>
+                                <option value="custom">Custom JSON Automation</option>
+                            </select>
                         </div>
-                        <div class="slider-group">
-                            <label>Database Read/Write (Monthly) <span class="value-display" id="db-val">10M</span></label>
-                            <input type="range" id="db" min="1" max="100" step="1" value="10">
+                        <div class="form-group">
+                            <label>Bot / Sender Custom Name</label>
+                            <input type="text" id="bot-name" value="Torquatus Automations">
                         </div>
-                        <div class="slider-group">
-                            <label>AI API Tokens Needed (Millions) <span class="value-display" id="tokens-val">50M</span></label>
-                            <input type="range" id="tokens" min="10" max="1000" step="10" value="50">
+                        <div class="form-group">
+                            <label>Embed / Message Title</label>
+                            <input type="text" id="msg-title" value="New SaaS Subscription Triggered!">
                         </div>
-                        <div class="slider-group">
-                            <label>Your SaaS Subscription Price <span class="value-display" id="price-val">$29/mo</span></label>
-                            <input type="range" id="price" min="9" max="299" step="5" value="29">
+                        <div class="form-group">
+                            <label>Raw Content Description / Payload Body</label>
+                            <textarea id="msg-body">User successfully upgraded to Premium Tier Plan. Active session established via API layer Gateway.</textarea>
                         </div>
                     </div>
 
+                    <!-- PAINEL DE OUTPUT DO CÓDIGO -->
                     <div>
-                        <h3>Estimated Monthly Infrastructure Cost</h3>
-                        <div class="provider-row">
-                            <span class="provider-name">Amazon Web Services (AWS)</span>
-                            <span class="cost-val" id="aws-cost">$0.00</span>
-                        </div>
-                        <div class="provider-row">
-                            <span class="provider-name">Google Cloud Platform (GCP)</span>
-                            <span class="cost-val" id="gcp-cost">$0.00</span>
-                        </div>
-                        <div class="provider-row">
-                            <span class="provider-name">Microsoft Azure</span>
-                            <span class="cost-val" id="azure-cost">$0.00</span>
-                        </div>
-
-                        <div class="margin-box">
-                            <div>Projected Net Profit Margin (AWS Baseline)</div>
-                            <div class="margin-val" id="margin-pct">0%</div>
-                        </div>
+                        <h3>Generated Payload Object</h3>
+                        <div class="code-output" id="json-preview">Loading structure...</div>
+                        <button class="btn-copy" onclick="copyCode()">Copy JSON Payload</button>
                     </div>
                 </div>
             </div>
 
+            <!-- BANNER DE ANÚNCIO BOTTOM -->
             <div id="banner-bottom" class="ad-box ad-bottom">
-                <span>ADVERTISEMENT (BOTTOM 970x90)</span>
-                <span class="refresh-timer">Auto-refreshing in: <b class="timer-count">30</b>s</span>
+                <span>ADVERTISEMENT PLACEHOLDER (BOTTOM 970x90)</span>
+                <span class="refresh-timer">Next update in: <b class="timer-count">30</b>s</span>
             </div>
         </div>
 
+        <!-- BARRA LATERAL COM BANNER RETENÇÃO -->
         <div class="sidebar-ad-container">
             <div id="banner-sidebar" class="ad-box ad-sidebar">
-                <span>ADVERTISEMENT (SKYSCRAPER 300x600)</span>
-                <span class="refresh-timer">Auto-refreshing in: <b class="timer-count">30</b>s</span>
+                <span>ADVERTISEMENT PLACEHOLDER (SKYSCRAPER 300x600)</span>
+                <span class="refresh-timer">Next update in: <b class="timer-count">30</b>s</span>
             </div>
         </div>
     </div>
 
     <script>
-        const inputs = ['mau', 'db', 'tokens', 'price'];
-        inputs.forEach(id => {
-            document.getElementById(id).addEventListener('input', calculateCosts);
-        });
+        const fields = ['platform', 'bot-name', 'msg-title', 'msg-body'];
+        fields.forEach(id => document.getElementById(id).addEventListener('input', generateJSON));
 
-        function calculateCosts() {
-            const mau = parseInt(document.getElementById('mau').value);
-            const db = parseInt(document.getElementById('db').value);
-            const tokens = parseInt(document.getElementById('tokens').value);
-            const price = parseInt(document.getElementById('price').value);
+        function generateJSON() {
+            const platform = document.getElementById('platform').value;
+            const name = document.getElementById('bot-name').value;
+            const title = document.getElementById('msg-title').value;
+            const body = document.getElementById('msg-body').value;
 
-            document.getElementById('mau-val').innerText = mau.toLocaleString();
-            document.getElementById('db-val').innerText = db + "M";
-            document.getElementById('tokens-val').innerText = tokens + "M";
-            document.getElementById('price-val').innerText = "$" + price + "/mo";
+            let output = {};
 
-            const aws = (mau * 0.02) + (db * 4) + (tokens * 0.15);
-            const gcp = (mau * 0.018) + (db * 4.2) + (tokens * 0.14);
-            const azure = (mau * 0.022) + (db * 3.8) + (tokens * 0.16);
+            if (platform === 'discord') {
+                output = {
+                    username: name,
+                    embeds: [{
+                        title: title,
+                        description: body,
+                        color: 5814783,
+                        timestamp: new Date().toISOString()
+                    }]
+                };
+            } else if (platform === 'telegram') {
+                output = {
+                    chat_id: "@your_channel",
+                    text: `*${name}*\n\n🔔 *${title}*\n${body}`,
+                    parse_mode: "Markdown"
+                };
+            } else {
+                output = {
+                    event: "saas.automation_triggered",
+                    agent: name,
+                    metadata: { title: title, payload_string: body }
+                };
+            }
 
-            document.getElementById('aws-cost').innerText = "$" + aws.toFixed(2);
-            document.getElementById('gcp-cost').innerText = "$" + gcp.toFixed(2);
-            document.getElementById('azure-cost').innerText = "$" + azure.toFixed(2);
-
-            const grossRevenue = mau * price;
-            const netProfit = grossRevenue - aws;
-            const marginPct = grossRevenue > 0 ? (netProfit / grossRevenue) * 100 : 0;
-            
-            document.getElementById('margin-pct').innerText = Math.max(0, marginPct).toFixed(1) + "%";
+            document.getElementById('json-preview').innerText = JSON.stringify(output, null, 4);
         }
 
+        function copyCode() {
+            const text = document.getElementById('json-preview').innerText;
+            navigator.clipboard.writeText(text);
+            alert("Payload copied to clipboard!");
+        }
+
+        // LÓGICA DE REFRESH DE 30 SEGUNDOS
         let timeLeft = 30;
         let isUserActive = true;
 
@@ -220,15 +249,14 @@
         }, 1000);
 
         function triggerAdRefresh() {
-            const banners = document.querySelectorAll('.ad-box');
-            banners.forEach(b => {
+            document.querySelectorAll('.ad-box').forEach(b => {
                 b.style.opacity = '0.4';
                 setTimeout(() => { b.style.opacity = '1'; }, 200);
             });
             isUserActive = false; 
         }
 
-        calculateCosts();
+        generateJSON();
     </script>
 </body>
 </html>
