@@ -3,216 +3,290 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevToolsHub - Ferramentas para Desenvolvedores</title>
+    <title>Prompt Studio IA - Engenharia de Prompt Grátis</title>
     <style>
-        /* Configuração de Cores Solicitada pelo Usuário */
+        /* Variáveis de Cores Solicitadas */
+        :root {
+            --cor-fundo: #F8F9FA;        /* ⬜ Fundo: Cinza Conforto */
+            --cor-marca: #1A73E8;        /* 🟦 Estrutura/Marca: Azul Tecnológico */
+            --cor-botao: #FF6B6B;        /* 🟧 Botão Principal: Laranja Vibrante */
+            --cor-texto: #2C3E50;        /* ⬛ Textos: Grafite Suave */
+            --cor-card: #FFFFFF;
+            --cor-borda: #E2E8F0;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #F8F9FA; /* ⬜ Fundo: Cinza Conforto */
-            color: #2C3E50; /* ⬛ Textos: Grafite Suave */
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto);
             margin: 0;
             padding: 0;
             display: flex;
+            flex-direction: column;
             min-height: 100vh;
         }
 
-        /* Barra Lateral de Navegação */
-        aside {
-            width: 260px;
-            background-color: #1A73E8; /* 🟦 Estrutura/Marca: Azul Tecnológico */
+        /* Topo e Banner 1 */
+        header {
+            background-color: var(--cor-card);
+            border-bottom: 1px solid var(--cor-borda);
             padding: 20px;
-            box-sizing: border-box;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+            text-align: center;
         }
-        aside h2 {
-            color: #FFFFFF;
-            font-size: 1.5rem;
-            margin-top: 0;
-            margin-bottom: 30px;
+        header h1 {
+            margin: 0;
+            color: var(--cor-marca);
+            font-size: 1.8rem;
+        }
+        header p {
+            margin: 5px 0 15px 0;
+            color: #7f8c8d;
+        }
+        .banner-topo {
+            width: 100%;
+            max-width: 728px;
+            height: 90px;
+            background-color: #E2E8F0;
+            margin: 0 auto;
             display: flex;
             align-items: center;
-            gap: 10px;
-        }
-        .nav-link {
-            display: block;
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            padding: 12px;
-            border-radius: 6px;
-            margin-bottom: 8px;
-            background-color: rgba(255, 255, 255, 0.1);
-            font-weight: 500;
-            transition: all 0.2s;
-        }
-        .nav-link.active {
-            background-color: #FFFFFF;
-            color: #1A73E8; /* 🟦 Azul Tecnológico */
-            font-weight: bold;
-        }
-        .nav-link:hover:not(.active) {
-            background-color: rgba(255, 255, 255, 0.2);
-            color: #FFFFFF;
-        }
-
-        /* Área de Conteúdo Principal */
-        main {
-            flex: 1;
-            padding: 40px;
-            box-sizing: border-box;
-            max-width: 800px;
-        }
-        h1 {
-            color: #2C3E50; /* ⬛ Grafite Suave */
-            margin-top: 0;
-        }
-        p.subtitle {
+            justify-content: center;
+            font-size: 0.8rem;
             color: #7f8c8d;
-            margin-bottom: 30px;
+            border: 1px dashed #bdc3c7;
+            border-radius: 4px;
         }
 
-        /* Caixa da Ferramenta */
-        .card {
-            background-color: #FFFFFF; /* ⬜ Fundo Branco */
-            padding: 30px;
-            border-radius: 8px;
-            border: 1px solid #E2E8F0;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+        /* Estrutura de Layout com Banner Lateral */
+        .wrapper {
+            display: flex;
+            flex: 1;
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+            gap: 20px;
         }
+
+        /* Banner 2 (Lateral Esquerda) */
+        .banner-lateral {
+            width: 160px;
+            height: 600px;
+            background-color: #E2E8F0;
+            position: sticky;
+            top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            border: 1px dashed #bdc3c7;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        /* Área do App Split Screen */
+        .app-container {
+            flex: 1;
+            display: flex;
+            gap: 20px;
+        }
+        .split-box {
+            flex: 1;
+            background-color: var(--cor-card);
+            border: 1px solid var(--cor-borda);
+            border-radius: 8px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.01);
+        }
+        .split-box h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: var(--cor-texto);
+            border-bottom: 2px solid var(--cor-fundo);
+            padding-bottom: 10px;
+        }
+
+        /* Inputs e Outputs */
         textarea {
             width: 100%;
-            height: 180px;
-            background-color: #F8F9FA;
-            border: 2px solid #E2E8F0;
-            color: #2C3E50;
-            padding: 15px;
+            flex: 1;
+            min-height: 300px;
+            background-color: var(--cor-fundo);
+            border: 1px solid var(--cor-borda);
             border-radius: 6px;
+            padding: 15px;
             box-sizing: border-box;
-            resize: vertical;
+            resize: none;
             font-size: 1rem;
-            transition: border-color 0.2s;
+            color: var(--cor-texto);
         }
         textarea:focus {
             outline: none;
-            border-color: #1A73E8; /* 🟦 Foco em Azul Tecnológico */
+            border-color: var(--cor-marca);
         }
-
-        /* Painel de Estatísticas (Contador) */
-        .stats-container {
-            display: flex;
-            gap: 20px;
-            margin: 15px 0;
-        }
-        .stat-box {
-            background-color: #F8F9FA;
-            padding: 10px 20px;
-            border-radius: 6px;
-            border: 1px solid #E2E8F0;
+        
+        /* Box de código formatada */
+        .output-wrapper {
+            position: relative;
             flex: 1;
-            text-align: center;
+            display: flex;
+            flex-direction: column;
         }
-        .stat-box span {
-            display: block;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #1A73E8; /* 🟦 Números em Azul Tecnológico */
-        }
-        .stat-box label {
-            font-size: 0.85rem;
-            color: #7f8c8d;
+        pre {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 6px;
+            flex: 1;
+            margin: 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95rem;
+            overflow-y: auto;
         }
 
-        /* Botões de Ação */
-        .buttons {
-            margin-top: 20px;
-            display: flex;
-            gap: 12px;
-        }
-        button {
-            background-color: #F39C12; /* 🟧 Botão de Ação: Laranja Chamativo */
+        /* Botões */
+        .btn-gerar {
+            background-color: var(--cor-botao);
             color: white;
             border: none;
-            padding: 12px 20px;
+            padding: 15px;
             border-radius: 6px;
-            cursor: pointer;
+            font-size: 1.1rem;
             font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
             transition: background-color 0.2s;
         }
-        button:hover {
-            background-color: #E67E22; /* Laranja um pouco mais escuro no hover */
+        .btn-gerar:hover {
+            background-color: #ff5252;
         }
-        button.btn-clear {
-            margin-left: auto; 
-            background-color: #BDC3C7; 
-            color: #2C3E50;
-        }
-        button.btn-clear:hover {
-            background-color: #95A5A6;
+        .btn-copiar {
+            background-color: var(--cor-marca);
             color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .btn-copiar:hover {
+            background-color: #155cb8;
+        }
+
+        /* Banner 3 (Zona de Ação) */
+        .banner-acao {
+            width: 100%;
+            height: 100px;
+            background-color: #E2E8F0;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            border: 1px dashed #bdc3c7;
+            border-radius: 4px;
+        }
+
+        /* Status de Carregamento da IA */
+        .status-ia {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            margin-top: 5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        /* Responsividade Básica */
+        @media (max-width: 900px) {
+            .wrapper { flex-direction: column; }
+            .app-container { flex-direction: column; }
+            .banner-lateral { width: 100%; height: 90px; position: static; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Barra Lateral com Identidade Visual Azul -->
-    <aside>
-        <h2>🛠️ DevToolsHub</h2>
-        <a href="#" class="nav-link active">Modificador de Texto</a>
-        <a href="#" class="nav-link" style="opacity: 0.4; pointer-events: none;">Em breve...</a>
-    </aside>
-
-    <!-- Conteúdo Principal -->
-    <main>
-        <h1>Modificador de Texto & Contador</h1>
-        <p class="subtitle">Formate seus textos e veja estatísticas em tempo real.</p>
-
-        <div class="card">
-            <textarea id="textoInput" placeholder="Cole ou digite seu texto aqui..." oninput="atualizarContadores()"></textarea>
-            
-            <!-- Contadores dinâmicos -->
-            <div class="stats-container">
-                <div class="stat-box">
-                    <span id="charCount">0</span>
-                    <label>Caracteres</label>
-                </div>
-                <div class="stat-box">
-                    <span id="wordCount">0</span>
-                    <label>Palavras</label>
-                </div>
-            </div>
-            
-            <div class="buttons">
-                <button onclick="transformarMaiusculo()">MAIÚSCULO</button>
-                <button onclick="transformarMinusculo()">minúsculo</button>
-                <button onclick="limparTexto()" class="btn-clear">Limpar</button>
-            </div>
+    <!-- Topo + Banner 1 -->
+    <header>
+        <h1>⚡ Prompt Studio IA</h1>
+        <p>Gere prompts indestrutíveis e profissionais rodando IA direto no seu navegador</p>
+        <div class="banner-topo">
+            [Banner 1 - Anúncio Topo 728x90]
         </div>
-    </main>
+    </header>
+
+    <div class="wrapper">
+        <!-- Banner 2 (Lateral Persistente) -->
+        <div class="banner-lateral">
+            [Banner 2 - Arranha-céu 160x600]
+        </div>
+
+        <!-- Área Central da Aplicação -->
+        <div class="app-container">
+            
+            <!-- Lado Esquerdo: Input -->
+            <div class="split-box">
+                <h3>1. Digite sua ideia de Prompt</h3>
+                <textarea id="inputIdeia" placeholder="Ex: Quero um prompt para classificar o sentimento de e-mails em Feliz, Neutro ou Bravo..."></textarea>
+                <div class="status-ia" id="statusTexto">
+                    🟢 Sistema Pronto (WebGPU ativo)
+                </div>
+                <button class="btn-gerar" onclick="simularGeracao()">Gerar Prompt com IA</button>
+            </div>
+
+            <!-- Lado Direito: Output -->
+            <div class="split-box">
+                <h3>2. Prompt Profissional Otimizado</h3>
+                <div class="output-wrapper">
+                    <pre id="outputPrompt">O seu prompt estruturado aparecerá aqui...</pre>
+                </div>
+                <button class="btn-copiar" onclick="copiarTexto()">Copiar Prompt</button>
+                
+                <!-- Banner 3 (Zona de Maior Conversão de Cliques) -->
+                <div class="banner-acao">
+                    [Banner 3 - Anúncio Conversão 300x100]
+                </div>
+            </div>
+
+        </div>
+    </div>
 
     <script>
-        const campo = document.getElementById("textoInput");
-        const charCount = document.getElementById("charCount");
-        const wordCount = document.getElementById("wordCount");
+        // Função provisória para simular a resposta imediata estruturada
+        function simularGeracao() {
+            const ideia = document.getElementById("inputIdeia").value;
+            const output = document.getElementById("outputPrompt");
+            const status = document.getElementById("statusTexto");
 
-        function atualizarContadores() {
-            let texto = campo.value;
-            charCount.textContent = texto.length;
-            let palavras = texto.trim().split(/\s+/).filter(item => item.length > 0);
-            wordCount.textContent = palavras.length;
+            if (!ideia.trim()) {
+                alert("Por favor, digite uma ideia primeiro!");
+                return;
+            }
+
+            status.textContent = "⏳ Processando via WebGPU local...";
+            
+            // Simulação de resposta estruturada para teste do layout
+            setTimeout(() => {
+                output.textContent = `# FUNÇÃO\nVocê é um classificador especializado em análise de sentimentos para e-mails.\n\n# ENTRADA\nTexto do usuário: "${ideia}"\n\n# REGRAS E RESTRIÇÕES\n- Classifique estritamente entre os rótulos: [Feliz, Neutro, Bravo].\n- Não alucine informações fora do contexto.\n- Ignore saudações iniciais e assinaturas.\n\n# FORMATO DE SAÍDA\nRetorne exclusivamente um objeto JSON estruturado da seguinte forma:\n{\n  "sentimento": "rótulo",\n  "confianca": 0.00\n}`;
+                status.textContent = "🟢 Concluído pelo hardware local!";
+            }, 800);
         }
 
-        function transformarMaiusculo() {
-            campo.value = campo.value.toUpperCase();
-            atualizarContadores();
-        }
-
-        function transformarMinusculo() {
-            campo.value = campo.value.toLowerCase();
-            atualizarContadores();
-        }
-
-        function limparTexto() {
-            campo.value = "";
-            atualizarContadores();
+        // Função para copiar o texto gerado
+        function copiarTexto() {
+            const texto = document.getElementById("outputPrompt").innerText;
+            navigator.clipboard.writeText(texto).then(() => {
+                alert("Prompt copiado com sucesso!");
+            });
         }
     </script>
 
