@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prompt Studio IA - Engenharia de Prompt Grátis</title>
     <style>
-        /* Variáveis de Cores Solicitadas */
         :root {
             --cor-fundo: #F8F9FA;        /* ⬜ Fundo: Cinza Conforto */
             --cor-marca: #1A73E8;        /* 🟦 Estrutura/Marca: Azul Tecnológico */
@@ -26,7 +25,6 @@
             min-height: 100vh;
         }
 
-        /* Topo e Banner 1 */
         header {
             background-color: var(--cor-card);
             border-bottom: 1px solid var(--cor-borda);
@@ -57,7 +55,6 @@
             border-radius: 4px;
         }
 
-        /* Estrutura de Layout com Banner Lateral */
         .wrapper {
             display: flex;
             flex: 1;
@@ -69,7 +66,6 @@
             gap: 20px;
         }
 
-        /* Banner 2 (Lateral Esquerda) */
         .banner-lateral {
             width: 160px;
             height: 600px;
@@ -86,7 +82,6 @@
             flex-shrink: 0;
         }
 
-        /* Área do App Split Screen */
         .app-container {
             flex: 1;
             display: flex;
@@ -110,7 +105,6 @@
             padding-bottom: 10px;
         }
 
-        /* Inputs e Outputs */
         textarea {
             width: 100%;
             flex: 1;
@@ -129,7 +123,6 @@
             border-color: var(--cor-marca);
         }
         
-        /* Box de código formatada */
         .output-wrapper {
             position: relative;
             flex: 1;
@@ -150,7 +143,6 @@
             overflow-y: auto;
         }
 
-        /* Botões */
         .btn-gerar {
             background-color: var(--cor-botao);
             color: white;
@@ -180,7 +172,6 @@
             background-color: #155cb8;
         }
 
-        /* Banner 3 (Zona de Ação) */
         .banner-acao {
             width: 100%;
             height: 100px;
@@ -195,7 +186,6 @@
             border-radius: 4px;
         }
 
-        /* Status de Carregamento da IA */
         .status-ia {
             font-size: 0.85rem;
             color: #7f8c8d;
@@ -205,7 +195,6 @@
             gap: 5px;
         }
         
-        /* Responsividade Básica */
         @media (max-width: 900px) {
             .wrapper { flex-direction: column; }
             .app-container { flex-direction: column; }
@@ -215,7 +204,6 @@
 </head>
 <body>
 
-    <!-- Topo + Banner 1 -->
     <header>
         <h1>⚡ Prompt Studio IA</h1>
         <p>Gere prompts indestrutíveis e profissionais rodando IA direto no seu navegador</p>
@@ -225,25 +213,20 @@
     </header>
 
     <div class="wrapper">
-        <!-- Banner 2 (Lateral Persistente) -->
         <div class="banner-lateral">
             [Banner 2 - Arranha-céu 160x600]
         </div>
 
-        <!-- Área Central da Aplicação -->
         <div class="app-container">
-            
-            <!-- Lado Esquerdo: Input -->
             <div class="split-box">
                 <h3>1. Digite sua ideia de Prompt</h3>
                 <textarea id="inputIdeia" placeholder="Ex: Quero um prompt para classificar o sentimento de e-mails em Feliz, Neutro ou Bravo..."></textarea>
                 <div class="status-ia" id="statusTexto">
-                    🟢 Sistema Pronto (WebGPU ativo)
+                    ⏳ Conectando ao sistema de IA...
                 </div>
                 <button class="btn-gerar" onclick="simularGeracao()">Gerar Prompt com IA</button>
             </div>
 
-            <!-- Lado Direito: Output -->
             <div class="split-box">
                 <h3>2. Prompt Profissional Otimizado</h3>
                 <div class="output-wrapper">
@@ -251,44 +234,76 @@
                 </div>
                 <button class="btn-copiar" onclick="copiarTexto()">Copiar Prompt</button>
                 
-                <!-- Banner 3 (Zona de Maior Conversão de Cliques) -->
                 <div class="banner-acao">
                     [Banner 3 - Anúncio Conversão 300x100]
                 </div>
             </div>
-
         </div>
     </div>
 
-    <script>
-        // Função provisória para simular a resposta imediata estruturada
-        function simularGeracao() {
+    <!-- Script Corrigido e Modularizado para carregar a IA local -->
+    <script type="module">
+        import { pipeline } from 'https://jsdelivr.net';
+
+        let geradorDeTexto = null;
+        const status = document.getElementById("statusTexto");
+        const output = document.getElementById("outputPrompt");
+
+        async function inicializarIA() {
+            try {
+                status.innerHTML = "⏳ Baixando modelo de IA leve para o navegador (apenas na 1ª vez)...";
+                
+                // Usando o modelo Qwen leve otimizado para navegadores
+                geradorDeTexto = await pipeline('text-generation', 'Xenova/Qwen1.5-0.5B-Chat');
+                
+                status.innerHTML = "🟢 IA Pronta e Salva no seu Navegador!";
+            } catch (erro) {
+                status.innerHTML = "🔴 Erro ao carregar IA local. Verifique sua conexão.";
+                console.error(erro);
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', inicializarIA);
+
+        window.simularGeracao = async function() {
             const ideia = document.getElementById("inputIdeia").value;
-            const output = document.getElementById("outputPrompt");
-            const status = document.getElementById("statusTexto");
 
             if (!ideia.trim()) {
                 alert("Por favor, digite uma ideia primeiro!");
                 return;
             }
 
-            status.textContent = "⏳ Processando via WebGPU local...";
-            
-            // Simulação de resposta estruturada para teste do layout
-            setTimeout(() => {
-                output.textContent = `# FUNÇÃO\nVocê é um classificador especializado em análise de sentimentos para e-mails.\n\n# ENTRADA\nTexto do usuário: "${ideia}"\n\n# REGRAS E RESTRIÇÕES\n- Classifique estritamente entre os rótulos: [Feliz, Neutro, Bravo].\n- Não alucine informações fora do contexto.\n- Ignore saudações iniciais e assinaturas.\n\n# FORMATO DE SAÍDA\nRetorne exclusivamente um objeto JSON estruturado da seguinte forma:\n{\n  "sentimento": "rótulo",\n  "confianca": 0.00\n}`;
-                status.textContent = "🟢 Concluído pelo hardware local!";
-            }, 800);
+            if (!geradorDeTexto) {
+                alert("A IA ainda está carregando os arquivos necessários. Aguarde um instante.");
+                return;
+            }
+
+            status.innerHTML = "⏳ A IA local está processando no seu hardware...";
+            output.textContent = "Processando...";
+
+            const promptDeEngenharia = `Transforme esta ideia simples em um prompt profissional e altamente estruturado em formato Markdown, com seções de contexto, regras estritas e formato de saída esperado: "${ideia}"`;
+
+            try {
+                const resultado = await geradorDeTexto(promptDeEngenharia, {
+                    max_new_tokens: 250,
+                    temperature: 0.6,
+                });
+
+                output.textContent = resultado[0].generated_text;
+                status.innerHTML = "🟢 Concluído com sucesso!";
+            } catch (erro) {
+                output.textContent = "Erro ao processar o texto localmente.";
+                status.innerHTML = "🔴 Erro na execução.";
+                console.error(erro);
+            }
         }
 
-        // Função para copiar o texto gerado
-        function copiarTexto() {
+        window.copiarTexto = function() {
             const texto = document.getElementById("outputPrompt").innerText;
             navigator.clipboard.writeText(texto).then(() => {
                 alert("Prompt copiado com sucesso!");
             });
         }
     </script>
-
 </body>
 </html>
