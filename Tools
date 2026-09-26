@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DevTools — Free Developer Tools</title>
+<meta name="description" content="Fast and free developer tools for programmers, developers, bot builders and SaaS creators.">
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #0b0f14;
+        color: #f5f7fa;
+    }
+
+    header {
+        border-bottom: 1px solid #202733;
+        padding: 22px 30px;
+    }
+
+    .container {
+        max-width: 1100px;
+        margin: auto;
+    }
+
+    .logo {
+        font-size: 24px;
+        font-weight: 700;
+    }
+
+    .hero {
+        text-align: center;
+        padding: 80px 20px 50px;
+    }
+
+    .hero h1 {
+        font-size: 48px;
+        margin-bottom: 18px;
+    }
+
+    .hero p {
+        color: #9da7b5;
+        font-size: 18px;
+        max-width: 650px;
+        margin: auto;
+        line-height: 1.6;
+    }
+
+    .tools {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 18px;
+        padding: 30px 20px 80px;
+    }
+
+    .tool {
+        background: #111720;
+        border: 1px solid #202936;
+        border-radius: 12px;
+        padding: 24px;
+        text-decoration: none;
+        color: white;
+        transition: 0.2s;
+    }
+
+    .tool:hover {
+        transform: translateY(-3px);
+        border-color: #3b4656;
+    }
+
+    .tool h2 {
+        margin-top: 0;
+        font-size: 20px;
+    }
+
+    .tool p {
+        color: #8f9aaa;
+        line-height: 1.5;
+    }
+
+    footer {
+        border-top: 1px solid #202733;
+        text-align: center;
+        padding: 30px;
+        color: #687384;
+    }
+</style>
+</head>
+
+<body>
+
+<header> <div class="container"> <div class="logo">DevTools</div> </div> </header>
+
+<main>
+
+<section class="hero">
+    <h1>Developer tools, made simple.</h1>
+
+    <p>
+        Fast and free tools for developers, programmers,
+        bot builders and SaaS creators.
+    </p>
+</section>
+
+<section class="container">
+    <div class="tools">
+
+        <a class="tool" href="#">
+            <h2>JSON Formatter</h2>
+            <p>Format, validate and minify JSON instantly.</p>
+        </a>
+
+        <a class="tool" href="#">
+            <h2>JWT Decoder</h2>
+            <p>Decode JWT headers and payloads directly in your browser.</p>
+        </a>
+
+        <a class="tool" href="#">
+            <h2>Regex Tester</h2>
+            <p>Test regular expressions and inspect matches.</p>
+        </a>
+
+        <a class="tool" href="#">
+            <h2>Base64 Encoder</h2>
+            <p>Encode and decode Base64 strings quickly.</p>
+        </a>
+
+        <a class="tool" href="#">
+            <h2>UUID Generator</h2>
+            <p>Generate UUIDs instantly for your applications.</p>
+        </a>
+
+        <a class="tool" href="#">
+            <h2>Cron Generator</h2>
+            <p>Create cron expressions for scheduled tasks.</p>
+        </a>
+
+        <a class="tool" href="#">
+            <h2>HTTP Status Codes</h2>
+            <p>Quick reference for HTTP response status codes.</p>
+        </a>
+
+        <a class="tool" href="#">
+            <h2>Discord Tools</h2>
+            <p>Utilities for Discord bots, webhooks and developers.</p>
+        </a>
+
+    </div>
+</section>
+
+</main>
+
+<footer> © 2026 DevTools. Free developer utilities. </footer>
+
+</body> </html>
