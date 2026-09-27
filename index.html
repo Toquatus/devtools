@@ -4,208 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prompt Studio IA - Engenharia de Prompt Grátis</title>
-    <style>
-        :root {
-            --cor-fundo: #F8F9FA;        /* ⬜ Fundo: Cinza Conforto */
-            --cor-marca: #1A73E8;        /* 🟦 Estrutura/Marca: Azul Tecnológico */
-            --cor-botao: #FF6B6B;        /* 🟧 Botão Principal: Laranja Vibrante */
-            --cor-texto: #2C3E50;        /* ⬛ Textos: Grafite Suave */
-            --cor-card: #FFFFFF;
-            --cor-borda: #E2E8F0;
-        }
-
-        body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--cor-fundo);
-            color: var(--cor-texto);
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        header {
-            background-color: var(--cor-card);
-            border-bottom: 1px solid var(--cor-borda);
-            padding: 20px;
-            text-align: center;
-        }
-        header h1 {
-            margin: 0;
-            color: var(--cor-marca);
-            font-size: 1.8rem;
-        }
-        header p {
-            margin: 5px 0 15px 0;
-            color: #7f8c8d;
-        }
-        .banner-topo {
-            width: 100%;
-            max-width: 728px;
-            height: 90px;
-            background-color: #E2E8F0;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            color: #7f8c8d;
-            border: 1px dashed #bdc3c7;
-            border-radius: 4px;
-        }
-
-        .wrapper {
-            display: flex;
-            flex: 1;
-            max-width: 1400px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 20px;
-            box-sizing: border-box;
-            gap: 20px;
-        }
-
-        .banner-lateral {
-            width: 160px;
-            height: 600px;
-            background-color: #E2E8F0;
-            position: sticky;
-            top: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            color: #7f8c8d;
-            border: 1px dashed #bdc3c7;
-            border-radius: 4px;
-            flex-shrink: 0;
-        }
-
-        .app-container {
-            flex: 1;
-            display: flex;
-            gap: 20px;
-        }
-        .split-box {
-            flex: 1;
-            background-color: var(--cor-card);
-            border: 1px solid var(--cor-borda);
-            border-radius: 8px;
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.01);
-        }
-        .split-box h3 {
-            margin-top: 0;
-            margin-bottom: 15px;
-            color: var(--cor-texto);
-            border-bottom: 2px solid var(--cor-fundo);
-            padding-bottom: 10px;
-        }
-
-        textarea {
-            width: 100%;
-            flex: 1;
-            min-height: 300px;
-            background-color: var(--cor-fundo);
-            border: 1px solid var(--cor-borda);
-            border-radius: 6px;
-            padding: 15px;
-            box-sizing: border-box;
-            resize: none;
-            font-size: 1rem;
-            color: var(--cor-texto);
-        }
-        textarea:focus {
-            outline: none;
-            border-color: var(--cor-marca);
-        }
-        
-        .output-wrapper {
-            position: relative;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        pre {
-            background-color: #2c3e50;
-            color: #ecf0f1;
-            padding: 15px;
-            border-radius: 6px;
-            flex: 1;
-            margin: 0;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.95rem;
-            overflow-y: auto;
-        }
-
-        .btn-gerar {
-            background-color: var(--cor-botao);
-            color: white;
-            border: none;
-            padding: 15px;
-            border-radius: 6px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 15px;
-            transition: background-color 0.2s;
-        }
-        .btn-gerar:hover {
-            background-color: #ff5252;
-        }
-        .btn-copiar {
-            background-color: var(--cor-marca);
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 4px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        .btn-copiar:hover {
-            background-color: #155cb8;
-        }
-
-        .banner-acao {
-            width: 100%;
-            height: 100px;
-            background-color: #E2E8F0;
-            margin-top: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            color: #7f8c8d;
-            border: 1px dashed #bdc3c7;
-            border-radius: 4px;
-        }
-
-        .status-ia {
-            font-size: 0.85rem;
-            color: #7f8c8d;
-            margin-top: 5px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        @media (max-width: 900px) {
-            .wrapper { flex-direction: column; }
-            .app-container { flex-direction: column; }
-            .banner-lateral { width: 100%; height: 90px; position: static; }
-        }
-    </style>
+    <!-- Ícones Modernos -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <!-- Vinculando o arquivo de estilo isolado -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
-        <h1>⚡ Prompt Studio IA</h1>
+        <h1><i class="fa-solid fa-bolt"></i> Prompt Studio IA</h1>
         <p>Gere prompts indestrutíveis e profissionais rodando IA direto no seu navegador</p>
         <div class="banner-topo">
             [Banner 1 - Anúncio Topo 728x90]
@@ -218,21 +25,27 @@
         </div>
 
         <div class="app-container">
+            <!-- Lado Esquerdo: Entrada -->
             <div class="split-box">
-                <h3>1. Digite sua ideia de Prompt</h3>
+                <h3><i class="fa-solid fa-lightbulb" style="color: #f1c40f;"></i> 1. Digite sua ideia de Prompt</h3>
                 <textarea id="inputIdeia" placeholder="Ex: Quero um prompt para classificar o sentimento de e-mails em Feliz, Neutro ou Bravo..."></textarea>
                 <div class="status-ia" id="statusTexto">
-                    ⏳ Conectando ao sistema de IA...
+                    <i class="fa-solid fa-circle-notch fa-spin"></i> Conectando ao sistema de IA local...
                 </div>
-                <button class="btn-gerar" onclick="simularGeracao()">Gerar Prompt com IA</button>
+                <button class="btn-gerar" onclick="simularGeracao()">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Gerar Prompt com IA
+                </button>
             </div>
 
+            <!-- Lado Direito: Saída -->
             <div class="split-box">
-                <h3>2. Prompt Profissional Otimizado</h3>
+                <h3><i class="fa-solid fa-code" style="color: var(--cor-marca);"></i> 2. Prompt Profissional Otimizado</h3>
                 <div class="output-wrapper">
                     <pre id="outputPrompt">O seu prompt estruturado aparecerá aqui...</pre>
                 </div>
-                <button class="btn-copiar" onclick="copiarTexto()">Copiar Prompt</button>
+                <button class="btn-copiar" onclick="copiarTexto()">
+                    <i class="fa-solid fa-copy"></i> Copiar Prompt
+                </button>
                 
                 <div class="banner-acao">
                     [Banner 3 - Anúncio Conversão 300x100]
@@ -241,69 +54,7 @@
         </div>
     </div>
 
-    <!-- Script Corrigido e Modularizado para carregar a IA local -->
-    <script type="module">
-        import { pipeline } from 'https://jsdelivr.net';
-
-        let geradorDeTexto = null;
-        const status = document.getElementById("statusTexto");
-        const output = document.getElementById("outputPrompt");
-
-        async function inicializarIA() {
-            try {
-                status.innerHTML = "⏳ Baixando modelo de IA leve para o navegador (apenas na 1ª vez)...";
-                
-                // Usando o modelo Qwen leve otimizado para navegadores
-                geradorDeTexto = await pipeline('text-generation', 'Xenova/Qwen1.5-0.5B-Chat');
-                
-                status.innerHTML = "🟢 IA Pronta e Salva no seu Navegador!";
-            } catch (erro) {
-                status.innerHTML = "🔴 Erro ao carregar IA local. Verifique sua conexão.";
-                console.error(erro);
-            }
-        }
-
-        window.addEventListener('DOMContentLoaded', inicializarIA);
-
-        window.simularGeracao = async function() {
-            const ideia = document.getElementById("inputIdeia").value;
-
-            if (!ideia.trim()) {
-                alert("Por favor, digite uma ideia primeiro!");
-                return;
-            }
-
-            if (!geradorDeTexto) {
-                alert("A IA ainda está carregando os arquivos necessários. Aguarde um instante.");
-                return;
-            }
-
-            status.innerHTML = "⏳ A IA local está processando no seu hardware...";
-            output.textContent = "Processando...";
-
-            const promptDeEngenharia = `Transforme esta ideia simples em um prompt profissional e altamente estruturado em formato Markdown, com seções de contexto, regras estritas e formato de saída esperado: "${ideia}"`;
-
-            try {
-                const resultado = await geradorDeTexto(promptDeEngenharia, {
-                    max_new_tokens: 250,
-                    temperature: 0.6,
-                });
-
-                output.textContent = resultado[0].generated_text;
-                status.innerHTML = "🟢 Concluído com sucesso!";
-            } catch (erro) {
-                output.textContent = "Erro ao processar o texto localmente.";
-                status.innerHTML = "🔴 Erro na execução.";
-                console.error(erro);
-            }
-        }
-
-        window.copiarTexto = function() {
-            const texto = document.getElementById("outputPrompt").innerText;
-            navigator.clipboard.writeText(texto).then(() => {
-                alert("Prompt copiado com sucesso!");
-            });
-        }
-    </script>
+    <!-- Vinculando o arquivo de inteligência artificial isolado -->
+    <script type="module" src="app.js"></script>
 </body>
 </html>
